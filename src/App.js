@@ -2,7 +2,9 @@ import React from 'react';
 import GlobalStyle from './global/global';
 import { ThemeProvider } from 'styled-components';
 import theme from './global/theme';
-import AnimalsContainer from './docs/day04/expert/AnimalsContainer';
+import Form from './docs/day05/form/Form';
+
+
 
 
 // import HomeInput from './pages/home/HomeInput';
@@ -15,7 +17,7 @@ function App() {
     <>
     <ThemeProvider theme={theme}>
     <GlobalStyle />
-      <AnimalsContainer />
+      <Form />
     </ThemeProvider>
     </>
   );
