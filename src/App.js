@@ -2,7 +2,12 @@ import React from 'react';
 import GlobalStyle from './global/global';
 import { ThemeProvider } from 'styled-components';
 import theme from './global/theme';
-import Form from './docs/day05/form/Form';
+import { RouterProvider } from 'react-router-dom';
+import router from './routes/router';
+
+
+
+
 
 
 
@@ -17,7 +22,7 @@ function App() {
     <>
     <ThemeProvider theme={theme}>
     <GlobalStyle />
-      <Form />
+    <RouterProvider router={router} />
     </ThemeProvider>
     </>
   );

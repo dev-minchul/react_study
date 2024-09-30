@@ -25,26 +25,68 @@ const Form = () => {
 
       // CRUD(Create), post 요청
       // fetch("경로", {옵션})
-      await fetch("http://localhost:4000/user" , {
-        method : 'POST',
-        headers : {
-          'Content-Type' : "applcation/json"
-        },
-        body : JSON.stringify ({
-          id : 2,
-          email : data.email,
-          password : data.password
+      // await fetch("http://localhost:4000/user" , {
+      //   method : 'POST',
+      //   headers : {
+      //     'Content-Type' : "applcation/json"
+      //   },
+      //   body : JSON.stringify ({
+      //     id : 2,
+      //     email : data.email,
+      //     password : data.password
+      //   })
+      // })
+      // .then((response) => response.json())
+      // .then(console.log)
+      // .catch(console.error)
+
+
+
+      // DELETE
+      // 요청경로 http://localhost:4000/user/2
+      if(window.confirm('정말 회원탈퇴 하시겠습니까?')){
+        fetch(`http://localhost:4000/user/2`, {
+          method : 'DELETE',
+          headers : {
+            'Content-Type' : "application/json"
+          },
+          body : JSON.stringify({
+            ...data
+          })
+        }).then((response) => {
+          if(!response.ok){ return console.log(`Error ${response}`)}
+          console.log("회원탈퇴가 완료되었습니다.")
         })
-      })
-      .then((response) => response.json())
-      .then(console.log)
-      .catch(console.error)
-
-
-
-
-
-}) }>
+      }
+         // UPDATE
+      if(window.confirm(`정보를 수정 하시겠습니까?`)){
+        fetch('http://localhost:4000/user/1', {
+          method: 'PUT', // 회원 정보를 업데이트할 때는 주로 PUT 사용
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            // 여기에 업데이트할 사용자 정보를 넣습니다.
+            id : 1,
+            email : data.email,
+            password : data.password
+          }),
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('수정 실패');
+            }
+            return response.json();
+          })
+          .then(data => {
+            console.log('수정 성공:', data);
+          })
+          .catch(error => {
+            console.error('에러 발생:', error);
+          });
+      }
+      
+    })}>
 
       <label>
       <p>이메일</p>
